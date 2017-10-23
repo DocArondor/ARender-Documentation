@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.arondor.arender</groupId>
+		<artifactId>arender-root</artifactId>
+		<version>3.1.8-SNAPSHOT</version>
+	</parent>
+	<groupId>com.arondor.arender</groupId>
+	<artifactId>arender-english-documentation-package</artifactId>
+	<name>ARender Sphinx English Documentation Package</name>
+
+	<packaging>war</packaging>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>sphinx</directory>
+				<includes>
+					<include>conf.py</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.4</version>
+
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>2.2</version>
+							<reportSets>
+								<reportSet>
+									<reports />
+								</reportSet>
+							</reportSets>
+						</plugin>
+						<plugin>
+							<groupId>org.tomdz.maven</groupId>
+							<artifactId>sphinx-maven-plugin</artifactId>
+							<version>1.0.3</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>Generate-product-documentation</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>default-war</id>
+            <phase>package</phase>
+            <goals>
+              <goal>war</goal>
+            </goals>
+            <configuration>
+              <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+              <webResources>
+                <resource>
+                  <filtering>true</filtering>
+                  <directory>target/site</directory>
+                  <includes>
+                    <include>**/*</include>
+                  </includes>
+                </resource>
+              </webResources>
+              <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+          <webResources>
+            <resource>
+              <filtering>true</filtering>
+              <directory>target/site</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </resource>
+          </webResources>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+        </configuration>
+      </plugin>
+		</plugins>
+	</build>
+</project>

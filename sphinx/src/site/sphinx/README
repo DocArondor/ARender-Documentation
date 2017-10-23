@@ -1,0 +1,10 @@
+README Sphinx Flower Docs Documentation 
+
+- Generate HTML from sources 
+sphinx-build source/ build/
+
+- Generate a PDF from sources 
+sphinx-build -b pdf source/ build/
+	
+	* Requirements : 
+		pip install rst2pdf

@@ -1,0 +1,9 @@
+<div class="class-file">
+            <div class="content-body attribute-pdf">
+    	    	    	
+		<iframe src="/arender/view/1743/10740/file/pres-current-en.pdf/(right)/142" width="100%" height="500" frameborder="0" scrolling="0" name="arender">
+		    Loading ARender...
+		</iframe>
+    	    </div>
+           </div>
+</div>  
